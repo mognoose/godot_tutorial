@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://huoiyu7ybrjy"]
+[gd_scene load_steps=16 format=3 uid="uid://huoiyu7ybrjy"]
 
 [ext_resource type="Texture2D" uid="uid://dm1s22oe34dkb" path="res://Textures/checker_black_512x512.png" id="1_3vyfg"]
 [ext_resource type="Texture2D" uid="uid://djr237n7ea7fk" path="res://Textures/logo_magenta_512x512.png" id="2_vwstm"]
 [ext_resource type="Texture2D" uid="uid://c416vmvc7fuf3" path="res://Textures/logo_lime_512x512.png" id="3_3mx8p"]
 [ext_resource type="Texture2D" uid="uid://b63j0k6lkw2qg" path="res://Textures/logo_red_512x512.png" id="4_ki1yb"]
 [ext_resource type="PackedScene" uid="uid://d054kitwx3mi5" path="res://scenes/player.tscn" id="5_fgmdl"]
+[ext_resource type="PackedScene" uid="uid://bo5axyxjytl2t" path="res://addons/kaykit_character_pack_adventures/Characters/gltf/Barbarian.glb" id="5_qko0c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fvuus"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,6 +36,10 @@ albedo_texture = ExtResource("3_3mx8p")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uorg1"]
 albedo_texture = ExtResource("4_ki1yb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1b3v7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0bakb"]
 
 [node name="world" type="Node3D"]
 
@@ -69,6 +74,51 @@ transform = Transform3D(-0.989093, 0, 0.147292, 0, 1, 0, -0.147292, 0, -0.989093
 material_override = SubResource("StandardMaterial3D_uorg1")
 use_collision = true
 
+[node name="Barbarian" parent="map" instance=ExtResource("5_qko0c")]
+transform = Transform3D(0.0663098, 0, -0.495584, 0, 0.5, 0, 0.495584, 0, 0.0663098, 2.95758, 0, -6.16241)
+
 [node name="Player" parent="." instance=ExtResource("5_fgmdl")]
 sens_horizontal = 0.2
 sens_vertical = 0.2
+
+[node name="MenuBar" type="MenuBar" parent="."]
+material = SubResource("ShaderMaterial_1b3v7")
+offset_left = 418.0
+offset_top = 121.0
+offset_right = 760.0
+offset_bottom = 478.0
+
+[node name="CheckerBlack512x512" type="Sprite2D" parent="MenuBar"]
+modulate = Color(0.0509804, 0.756863, 0.639216, 1)
+light_mask = 5
+visibility_layer = 5
+position = Vector2(191, 193)
+texture = ExtResource("1_3vyfg")
+
+[node name="Button" type="Button" parent="MenuBar"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 352.0
+offset_bottom = 112.0
+text = "Play"
+
+[node name="Button2" type="Button" parent="MenuBar"]
+offset_left = 32.0
+offset_top = 132.0
+offset_right = 350.0
+offset_bottom = 220.0
+text = "Exit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuBar"]
+modulate = Color(0.72549, 0.00784314, 0.639216, 1)
+light_mask = 5
+visibility_layer = 9
+material = SubResource("CanvasItemMaterial_0bakb")
+layout_mode = 0
+offset_left = -17.0
+offset_top = -111.0
+offset_right = 383.0
+offset_bottom = -71.0
+theme_override_font_sizes/normal_font_size = 27
+text = "The legend of the hatless man"

@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @onready var camera_mount = $camera_mount
 @onready var animation_player = $visuals/Rogue/AnimationPlayer
+@onready var button = $"../MenuBar/Button"
+@onready var menu_bar = $"../MenuBar"
+@onready var button_2 = $"../MenuBar/Button2"
 
 var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -13,6 +16,8 @@ var running = false
 
 var is_locked = false
 
+var mouse = true
+
 @export var sens_horizontal = 0.5
 @export var sens_vertical = 0.5
 @onready var visuals = $visuals
@@ -20,24 +25,47 @@ var is_locked = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+#func _ready():
+
 func _input(event):
 	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x*sens_horizontal))
-		visuals.rotate_y(deg_to_rad(event.relative.y*sens_vertical))
-		camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical))
+		if !mouse:
+			rotate_y(deg_to_rad(-event.relative.x*sens_horizontal))
+			visuals.rotate_y(deg_to_rad(event.relative.y*sens_vertical))
+			camera_mount.rotate_x(deg_to_rad(-event.relative.y*sens_vertical))
 
 func _physics_process(delta):
 	
-	if !animation_player.is_playing():
-		is_locked = false
+	if Input.is_action_just_released("escape"):
+		if mouse:
+			menu_bar.hide()
+			is_locked = false
+			mouse = false
+		else:
+			menu_bar.show()
+			is_locked = true
+			mouse = true
+			
 	
 	if Input.is_action_just_pressed("hit"):
-		if animation_player.current_animation != "hit":
-			animation_player.play("1H_Melee_Attack_Stab")
-			is_locked = true
+		if !mouse:
+			if animation_player.current_animation != "hit":
+				animation_player.play("1H_Melee_Attack_Stab")
+				is_locked = true
+		
+	if mouse:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if button.button_pressed:
+			menu_bar.hide()
+			is_locked = false
+			mouse = false
+		if button_2.button_pressed:
+			get_tree().quit()
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if !animation_player.is_playing():
+		is_locked = false
 	
 	if Input.is_action_pressed("run"):
 		SPEED = running_speed

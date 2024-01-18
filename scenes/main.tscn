@@ -104,6 +104,7 @@ offset_bottom = 112.0
 text = "Play"
 
 [node name="Button2" type="Button" parent="MenuBar"]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 132.0
 offset_right = 350.0

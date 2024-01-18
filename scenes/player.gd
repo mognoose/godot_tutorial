@@ -88,12 +88,12 @@ func _physics_process(delta):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		if !is_locked:
-			if running:
-				if(animation_player.current_animation != "Running_A"):
-					animation_player.play("Running_A")
-			else:
-				if(animation_player.current_animation != "Running_B"):
-					animation_player.play("Running_B")
+			#if running:
+				#if(animation_player.current_animation != "Running_A"):
+					#animation_player.play("Running_A")
+			#else:
+				#if(animation_player.current_animation != "Running_B"):
+					#animation_player.play("Running_B")
 
 			visuals.look_at(position + direction)
 		

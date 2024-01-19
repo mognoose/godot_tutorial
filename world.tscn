@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0i3ihfa5eq5n"]
+
+[ext_resource type="PackedScene" uid="uid://dteeone3teygl" path="res://player.tscn" id="1_6y4sd"]
+[ext_resource type="ArrayMesh" uid="uid://bvqtwfhkaxhnf" path="res://addons/kaykit_city_builder_bits/Assets/obj/building_B.obj" id="2_e4u5g"]
+[ext_resource type="ArrayMesh" uid="uid://bqfcw0djw2hxk" path="res://addons/kaykit_city_builder_bits/Assets/obj/building_A.obj" id="2_poyxx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4jn2c"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ewjcp"]
+sky_material = SubResource("ProceduralSkyMaterial_4jn2c")
+
+[sub_resource type="Environment" id="Environment_ow7fk"]
+background_mode = 2
+sky = SubResource("Sky_ewjcp")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ow7fk")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(1000, 0.1, 1000)
+
+[node name="BuildingA" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -9.30871, 0.0499992, 10.1228)
+mesh = ExtResource("2_poyxx")
+
+[node name="BuildingB" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, -9.21883, 0.0500031, 39.3876)
+mesh = ExtResource("2_e4u5g")
+
+[node name="player" parent="." instance=ExtResource("1_6y4sd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38732, 4.05363, 2.53245)

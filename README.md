@@ -1,10 +1,11 @@
-# Godot-Prototype-Texture
-Godot theme prototype textures.
+# Car-Demo
 
-![Screenshot](https://github.com/PiCode9560/Godot-Prototype-Texture/blob/main/screenshot.png?raw=true)
-![Screenshot](https://github.com/PiCode9560/Godot-Prototype-Texture/blob/main/screenshot2.png?raw=true)
+A simple car demo project to help you make your own cars in godot 4.0 .
 
-# Example Textures
-![Logo](https://github.com/PiCode9560/Godot-Prototype-Texture/blob/main/Textures/logo_blue_512x512.png?raw=true)
-![Grid](https://github.com/PiCode9560/Godot-Prototype-Texture/blob/main/Textures/grid_orange_512x512.png?raw=true)
-![Checker](https://github.com/PiCode9560/Godot-Prototype-Texture/blob/main/Textures/checker_black_512x512.png?raw=true)
+Features:
+       A basic car 
+       Dynamic camera
+       GLTF models of cars and wheel
+       Uses inheritance to let you quickly make multiple versions easily 
+       
+       
